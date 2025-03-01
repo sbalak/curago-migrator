@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CuraGo.Migrations
 {
     [DbContext(typeof(CuraGoContext))]
-    [Migration("20250220130105_credentialsadded")]
-    partial class credentialsadded
+    [Migration("20250301183049_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -132,6 +132,9 @@ namespace CuraGo.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -172,10 +175,22 @@ namespace CuraGo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateInitiated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateVerified")
@@ -187,12 +202,15 @@ namespace CuraGo.Migrations
                     b.Property<int>("Experience")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Fee")
+                    b.Property<decimal?>("Fee")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -204,6 +222,9 @@ namespace CuraGo.Migrations
                     b.Property<double?>("Latitude")
                         .HasMaxLength(200)
                         .HasColumnType("float");
+
+                    b.Property<string>("Locality")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Longitude")
                         .HasMaxLength(200)
@@ -218,6 +239,9 @@ namespace CuraGo.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Postcode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PrimarySpecialityId")
                         .HasColumnType("int");
 
@@ -226,6 +250,9 @@ namespace CuraGo.Migrations
 
                     b.Property<DateTime?>("RefreshTokenExpiry")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("RegisterInterest")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SecondarySpecialityId")
                         .HasColumnType("int");
@@ -355,12 +382,27 @@ namespace CuraGo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(50)
@@ -369,6 +411,9 @@ namespace CuraGo.Migrations
                     b.Property<double?>("Latitude")
                         .HasMaxLength(200)
                         .HasColumnType("float");
+
+                    b.Property<string>("Locality")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Longitude")
                         .HasMaxLength(200)
@@ -381,6 +426,9 @@ namespace CuraGo.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Postcode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RefreshToken")
